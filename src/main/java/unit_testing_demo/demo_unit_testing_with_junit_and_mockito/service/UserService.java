@@ -1,0 +1,14 @@
+package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.service;
+
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDTO.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.response.UserResponseDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserAlreadyExistsException;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserNotFoundException;
+
+public interface UserService {
+    UserResponseDTO addUser(UserCreateRequestDTO userCreateRequestDTO) throws UserAlreadyExistsException;
+
+    UserResponseDTO getUserById(String id) throws UserNotFoundException;
+
+    UserResponseDTO getUserByEmailAddress(String emailAddress) throws UserNotFoundException;
+}
