@@ -10,7 +10,8 @@ public class UserConstant {
     public static final String USER_ID_MUST_BE_BLANK = "User ID must be blank for user creation";
     public static final String USER_FIRST_NAME_IS_BLANK = "User first name is required";
     public static final String USER_LAST_NAME_IS_BLANK = "User last name is required";
-    public static final String USER_EMAIL_ADDRESS_IS_BLANK = "User last name is required";
+    public static final String USER_EMAIL_ADDRESS_IS_INVALID = "Input for email address is invalid";
+    public static final String USER_PHONE_NUMBER_IS_INVALID = "Input for phone number is invalid";
     public static final String USER_AGE_IS_INVALID = "Input for age is invalid";
     public static final String USER_EMAIL_ADDRESS_ALREADY_EXISTS = "User email address already exists";
     public static final String USER_ALREADY_EXISTS = "User already exists";
