@@ -7,12 +7,13 @@ import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.Response;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDTO.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.response.UserResponseDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.errors.SystemErrorType;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.BaseException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserAlreadyExistsException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserNotFoundException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.orchestration.UserOrchestrationService;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.service.UserService;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.util.ErrorResponseUtil;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.util.SuccessResponseUtil;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.mapper.ErrorResponseMapper;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.mapper.SuccessResponseMapper;
 
 import java.util.Objects;
 
@@ -26,22 +27,24 @@ public class UserOrchestrationServiceImpl implements UserOrchestrationService {
     private final UserService userService;
 
     @Override
-    public Response addUser(UserCreateRequestDTO userCreateRequestDTO) throws UserAlreadyExistsException {
+    public Response addUser(UserCreateRequestDTO userCreateRequestDTO) throws BaseException {
         log.info("UserOrchestrationService: Request received in addUser");
         UserResponseDTO userResponseDTO = userService.addUser(userCreateRequestDTO);
-        return (Objects.nonNull(userResponseDTO)) ? SuccessResponseUtil.buildSuccessResponse(US_000, userResponseDTO) :
-                ErrorResponseUtil.buildErrorResponse(SystemErrorType.SE_000);
+        return (Objects.nonNull(userResponseDTO)) ? SuccessResponseMapper.toSuccessResponse(US_000, userResponseDTO) :
+                ErrorResponseMapper.toErrorResponse(SystemErrorType.SE_000);
     }
 
     @Override
     public Response getUserById(String id) throws UserNotFoundException {
+        log.info("UserOrchestrationService: Request received in getUserById");
         UserResponseDTO userResponseDTO = userService.getUserById(id);
-        return SuccessResponseUtil.buildSuccessResponse(US_001, userResponseDTO);
+        return SuccessResponseMapper.toSuccessResponse(US_001, userResponseDTO);
     }
 
     @Override
     public Response getUserByEmailAddress(String emailAddress) throws UserNotFoundException {
+        log.info("UserOrchestrationService: Request received in getUserByEmailAddress");
         UserResponseDTO userResponseDTO = userService.getUserByEmailAddress(emailAddress);
-        return SuccessResponseUtil.buildSuccessResponse(US_001, userResponseDTO);
+        return SuccessResponseMapper.toSuccessResponse(US_001, userResponseDTO);
     }
 }

@@ -24,8 +24,11 @@ public class UserCreateRequestDTO {
     @NotNull(message = USER_LAST_NAME_IS_BLANK)
     private String lastName;
 
-    @NotNull(message = USER_EMAIL_ADDRESS_ALREADY_EXISTS)
+    @NotNull(message = USER_EMAIL_ADDRESS_IS_INVALID)
     private String emailAddress;
+
+    @NotNull(message = USER_PHONE_NUMBER_IS_INVALID)
+    private String phoneNumber;
 
     @NotNull(message = USER_AGE_IS_INVALID)
     private Integer age;

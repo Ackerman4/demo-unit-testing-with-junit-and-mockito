@@ -1,10 +1,10 @@
-package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.util;
+package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.mapper;
 
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.SuccessResponse;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.SuccessType;
 
-public class SuccessResponseUtil {
-    public static SuccessResponse buildSuccessResponse(SuccessType successType, Object data) {
+public class SuccessResponseMapper {
+    public static SuccessResponse toSuccessResponse(SuccessType successType, Object data) {
         return SuccessResponse.builder()
                 .code(successType.getSuccessCode())
                 .message(successType.getSuccessMessage())
@@ -13,7 +13,7 @@ public class SuccessResponseUtil {
                 .build();
     }
 
-    public static SuccessResponse buildSuccessResponse(String successCode, String successMessage, Boolean status, Object data) {
+    public static SuccessResponse toSuccessResponse(String successCode, String successMessage, Boolean status, Object data) {
         return SuccessResponse.builder()
                 .code(successCode)
                 .message(successMessage)
@@ -22,5 +22,5 @@ public class SuccessResponseUtil {
                 .build();
     }
 
-    private SuccessResponseUtil() {}
+    private SuccessResponseMapper() {}
 }

@@ -1,4 +1,4 @@
-package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception;
+package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.handler;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,7 +10,7 @@ import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.ErrorRespo
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.errors.BusinessErrorType;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserAlreadyExistsException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserNotFoundException;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.util.ErrorResponseUtil;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.mapper.ErrorResponseMapper;
 
 import java.util.stream.Collectors;
 
@@ -20,27 +20,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleUserNotFoundException(UserNotFoundException exception) {
-        ErrorResponse errorResponse = ErrorResponseUtil.buildErrorResponse(exception);
+        ErrorResponse errorResponse = ErrorResponseMapper.toErrorResponse(exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ErrorResponse> handleUserAlreadyExistsException(UserAlreadyExistsException exception) {
-        ErrorResponse errorResponse = ErrorResponseUtil.buildErrorResponse(exception);
+        ErrorResponse errorResponse = ErrorResponseMapper.toErrorResponse(exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.CONFLICT);
-    }
-
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
-        String errorsMessage = exception.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(field -> field.getField() + ": " + field.getDefaultMessage())
-                .collect(Collectors.joining(", "));
-        ErrorResponse errorResponse = ErrorResponseUtil.buildErrorResponse(
-                BusinessErrorType.BE_000.getErrorCode(),
-                errorsMessage,
-                BusinessErrorType.BE_000.getStatus());
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }
