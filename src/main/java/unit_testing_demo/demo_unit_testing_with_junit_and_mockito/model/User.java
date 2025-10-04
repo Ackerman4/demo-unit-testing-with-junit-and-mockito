@@ -3,12 +3,14 @@ package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import static unit_testing_demo.demo_unit_testing_with_junit_and_mockito.constant.UserConstant.*;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class User {
     @Id
     private String id;

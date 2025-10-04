@@ -5,8 +5,8 @@ import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.ErrorTyp
 
 public enum BusinessErrorType implements ErrorType {
 
-    BE_000("BE-000", BusinessLogicConstant.MISSING_PARAMETERS, false),
-    BE_001("BE-001", BusinessLogicConstant.INVALID_INPUT, false);
+    BUSINESS_ERROR_MISSING_PARAMETER("BE-000", BusinessLogicConstant.MISSING_PARAMETER, false),
+    BUSINESS_ERROR_INVALID_INPUT("BE-001", BusinessLogicConstant.INVALID_INPUT, false);
 
     private final String businessErrorCode;
     private final String businessErrorMessage;

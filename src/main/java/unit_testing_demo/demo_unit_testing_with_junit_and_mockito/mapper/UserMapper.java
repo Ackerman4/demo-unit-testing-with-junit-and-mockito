@@ -22,7 +22,7 @@ public class UserMapper {
 
     public static User toUser(UserRequestDTO userRequestDTO) {
         User user = new User();
-        user.setId(UUID.randomUUID().toString());
+        user.setId(userRequestDTO.getId());
         user.setFirstName(userRequestDTO.getFirstName());
         user.setLastName(userRequestDTO.getLastName());
         user.setEmailAddress(userRequestDTO.getEmailAddress());
@@ -37,6 +37,7 @@ public class UserMapper {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .emailAddress(user.getEmailAddress())
+                .phoneNumber(user.getPhoneNumber())
                 .age(user.getAge())
                 .build();
     }
@@ -48,6 +49,7 @@ public class UserMapper {
                 .lastName(user.getLastName())
                 .emailAddress(user.getEmailAddress())
                 .age(user.getAge())
+                .phoneNumber(user.getPhoneNumber())
                 .build();
     }
 

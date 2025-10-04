@@ -37,20 +37,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDTO getUserById(String id) throws UserNotFoundException {
         log.info("UserService: Request received in getUserById");
-        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(UE_000));
+        User user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND_ERROR));
         return UserMapper.toUserResponseDTO(user);
     }
 
     @Override
     public UserResponseDTO getUserByEmailAddress(String emailAddress) throws UserNotFoundException {
         log.info("UserService: Request received in getUserByEmailAddress");
-        User user = userRepository.findByEmailAddress(emailAddress).orElseThrow(() -> new UserNotFoundException(UE_000));
+        User user = userRepository.findByEmailAddress(emailAddress).orElseThrow(() -> new UserNotFoundException(USER_NOT_FOUND_ERROR));
         return UserMapper.toUserResponseDTO(user);
     }
 
     private void filterFields(UserCreateRequestDTO userCreateRequestDTO) throws BaseException {
         boolean isUserAlreadyExists = Boolean.TRUE.equals(userValidatorService.validateUserDetailsForCreation(userCreateRequestDTO));
-        if (isUserAlreadyExists) throw new UserAlreadyExistsException(UE_002);
+        if (isUserAlreadyExists) throw new UserAlreadyExistsException(USER_ALREADY_EXISTS_ERROR);
         boolean isEmailAddressValid = userValidatorService.hasValidEmailAddress(userCreateRequestDTO.getEmailAddress());
         if (!isEmailAddressValid) throw new IllegalArgumentException(USER_EMAIL_ADDRESS_IS_INVALID);
         boolean isPhoneNumberValid = userValidatorService.hasValidPhoneNumber(userCreateRequestDTO.getPhoneNumber());
