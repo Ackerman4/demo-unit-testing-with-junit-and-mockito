@@ -3,7 +3,7 @@ package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.validator.imp
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.create.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.errors.BusinessErrorType;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserCreateFailedValidationException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.filter.UserFilterService;

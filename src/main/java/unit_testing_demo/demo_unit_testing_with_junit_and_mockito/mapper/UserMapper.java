@@ -1,7 +1,7 @@
 package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.mapper;
 
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.UserRequestDTO;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDTO.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.create.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.response.UserResponseDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.model.User;
 

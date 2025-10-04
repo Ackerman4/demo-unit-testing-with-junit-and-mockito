@@ -3,10 +3,11 @@ package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.Response;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.create.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.BaseException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserNotFoundException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.orchestration.UserOrchestrationService;
@@ -22,7 +23,7 @@ public class UserApiController {
     @PostMapping("/")
     public ResponseEntity<Response> addUser(@Valid @RequestBody UserCreateRequestDTO userCreateRequestDTO) throws BaseException {
         log.info("UserApiController: Request Received for addUser: {}", userCreateRequestDTO);
-        return ResponseEntity.ok()
+        return ResponseEntity.status(HttpStatus.CREATED)
                 .body(userOrchestrationService.addUser(userCreateRequestDTO));
     }
 
@@ -33,17 +34,17 @@ public class UserApiController {
                 .body(userOrchestrationService.getUserById(id));
     }
 
-    @GetMapping("/user-email-address/")
+    @GetMapping("/user-email-address")
     public ResponseEntity<Response> getUserByEmailAddress(@RequestParam String emailAddress) throws UserNotFoundException {
         log.info("UserApiController: Request Received for getUserByEmailAddress: {}", emailAddress);
         return ResponseEntity.ok()
                 .body(userOrchestrationService.getUserByEmailAddress(emailAddress));
     }
 
-    @GetMapping("/user-phone-number/")
+    @GetMapping("/user-phone-number")
     public ResponseEntity<Response> getUserByPhoneNumber(@RequestParam String phoneNumber) throws UserNotFoundException {
         log.info("UserApiController: Request Received for getUserByPhoneNumber: {}", phoneNumber);
         return ResponseEntity.ok()
-                .body(userOrchestrationService.getUserByEmailAddress(phoneNumber));
+                .body(userOrchestrationService.getUserByPhoneNumber(phoneNumber));
     }
 }

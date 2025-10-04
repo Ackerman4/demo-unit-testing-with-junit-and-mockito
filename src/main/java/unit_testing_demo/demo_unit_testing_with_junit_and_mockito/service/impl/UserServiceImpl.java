@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.create.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.response.UserResponseDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.BaseException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserNotFoundException;
@@ -24,8 +24,6 @@ import static unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.e
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
-    private final UserFilterService userFilterService;
 
     private final UserValidatorService userValidatorService;
 
