@@ -14,6 +14,7 @@ public class UserConstant {
     public static final String USER_PHONE_NUMBER_IS_INVALID = "Input for phone number is invalid";
     public static final String USER_AGE_IS_INVALID = "Input for age is invalid";
     public static final String USER_EMAIL_ADDRESS_ALREADY_EXISTS = "User email address already exists";
+    public static final String USER_PHONE_NUMBER_ALREADY_EXISTS = "User phone number already exists";
     public static final String USER_ALREADY_EXISTS = "User already exists";
 
     private UserConstant() {}

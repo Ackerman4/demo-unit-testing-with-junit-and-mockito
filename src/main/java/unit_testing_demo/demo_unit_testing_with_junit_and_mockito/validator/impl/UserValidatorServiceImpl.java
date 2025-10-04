@@ -2,43 +2,39 @@ package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.validator.imp
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDTO.UserCreateRequestDTO;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.repository.UserRepository;
+import org.springframework.stereotype.Service;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.errors.BusinessErrorType;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserCreateFailedValidationException;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.filter.UserFilterService;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.util.InputValidator;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.validator.UserValidatorService;
 
 @Slf4j
-@Component
+@Service
 @RequiredArgsConstructor
 public class UserValidatorServiceImpl implements UserValidatorService {
 
-    private final UserRepository userRepository;
+    private final UserFilterService userFilterService;
 
     @Override
-    public Boolean validateUserDetailsForCreation(UserCreateRequestDTO userCreateRequestDTO) {
-        log.info("UserValidatorService: Validating user resource in userValidationFacade");
-        return isEmailAlreadyExists(userCreateRequestDTO.getEmailAddress());
+    public void validateForUserCreation(UserCreateRequestDTO userCreateRequestDTO) {
+        log.info("UserValidatorService: Validating User Create Request for User Creation: {}", userCreateRequestDTO);
+        boolean areFieldsValid = validateEmailAddress(userCreateRequestDTO.getEmailAddress()) && validatePhoneNumber(userCreateRequestDTO.getPhoneNumber());
+        if (!areFieldsValid) {
+            log.error("UserValidatorService::validateForUserCreation: Failed validations, {}", userCreateRequestDTO);
+            throw new UserCreateFailedValidationException(BusinessErrorType.BUSINESS_ERROR_FAILED_VALIDATION_FOR_CREATION);
+        }
+        userFilterService.filterForUserCreation(userCreateRequestDTO);
     }
 
     @Override
-    public Boolean isUserAlreadyExists(String id) {
-        return userRepository.findById(id).isPresent();
-    }
-
-    @Override
-    public Boolean isEmailAlreadyExists(String emailAddress) {
-        return userRepository.findByEmailAddress(emailAddress).isPresent();
-    }
-
-    @Override
-    public Boolean hasValidEmailAddress(String emailAddress) {
+    public Boolean validateEmailAddress(String emailAddress) {
         return InputValidator.validateEmailAddress(emailAddress);
     }
 
     @Override
-    public Boolean hasValidPhoneNumber(String phoneNumber) {
+    public Boolean validatePhoneNumber(String phoneNumber) {
         return InputValidator.validatePhoneNumber(phoneNumber);
-
     }
 }

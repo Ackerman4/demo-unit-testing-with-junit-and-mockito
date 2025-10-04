@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.Response;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDTO.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.response.UserResponseDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.errors.SystemErrorType;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.BaseException;
@@ -27,7 +27,7 @@ public class UserOrchestrationServiceImpl implements UserOrchestrationService {
 
     @Override
     public Response addUser(UserCreateRequestDTO userCreateRequestDTO) throws BaseException {
-        log.info("UserOrchestrationService: Request received in addUser");
+        log.info("UserOrchestrationService: Request received in addUser: {}", userCreateRequestDTO);
         UserResponseDTO userResponseDTO = userService.addUser(userCreateRequestDTO);
         return (Objects.nonNull(userResponseDTO)) ? SuccessResponseMapper.toSuccessResponse(ADD_USER_SUCCESS, userResponseDTO) :
                 ErrorResponseMapper.toErrorResponse(SystemErrorType.SYSTEM_ERROR_INTERNAL_SERVER_ERROR);
@@ -35,15 +35,22 @@ public class UserOrchestrationServiceImpl implements UserOrchestrationService {
 
     @Override
     public Response getUserById(String id) throws UserNotFoundException {
-        log.info("UserOrchestrationService: Request received in getUserById");
+        log.info("UserOrchestrationService: Request received in getUserById: {}", id);
         UserResponseDTO userResponseDTO = userService.getUserById(id);
         return SuccessResponseMapper.toSuccessResponse(FETCH_USER_SUCCESS, userResponseDTO);
     }
 
     @Override
     public Response getUserByEmailAddress(String emailAddress) throws UserNotFoundException {
-        log.info("UserOrchestrationService: Request received in getUserByEmailAddress");
+        log.info("UserOrchestrationService: Request received in getUserByEmailAddress: {}", emailAddress);
         UserResponseDTO userResponseDTO = userService.getUserByEmailAddress(emailAddress);
+        return SuccessResponseMapper.toSuccessResponse(FETCH_USER_SUCCESS, userResponseDTO);
+    }
+
+    @Override
+    public Response getUserByPhoneNumber(String phoneNumber) throws UserNotFoundException {
+        log.info("UserOrchestrationService: Request received in getUserByPhoneNumber: {}", phoneNumber);
+        UserResponseDTO userResponseDTO = userService.getUserByPhoneNumber(phoneNumber);
         return SuccessResponseMapper.toSuccessResponse(FETCH_USER_SUCCESS, userResponseDTO);
     }
 }

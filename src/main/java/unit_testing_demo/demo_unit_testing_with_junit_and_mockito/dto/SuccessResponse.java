@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SuccessResponse implements Response {
+public class SuccessResponse<T> implements Response {
     private String code;
     private String message;
     private Boolean status;
-    private Object data;
+    private T data;
 }

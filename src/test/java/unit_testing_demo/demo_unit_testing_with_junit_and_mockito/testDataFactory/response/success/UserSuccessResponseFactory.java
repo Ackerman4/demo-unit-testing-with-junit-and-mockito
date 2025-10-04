@@ -8,18 +8,18 @@ import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.testDataFactor
 
 public class UserSuccessResponseFactory {
 
-    public static SuccessResponse createAddUserSuccessResponse() {
+    public static SuccessResponse<UserResponseDTO> createAddUserSuccessResponse() {
         UserResponseDTO userResponseDTO = UserTestDataFactory.createTestUserResponseDTO();
         return toUserSuccessResponse(UserSuccessType.ADD_USER_SUCCESS, userResponseDTO);
     }
 
-    public static SuccessResponse createGetUserSuccessResponse() {
+    public static SuccessResponse<UserResponseDTO> createGetUserSuccessResponse() {
         UserResponseDTO userResponseDTO = UserTestDataFactory.createTestUserResponseDTO();
         return toUserSuccessResponse(UserSuccessType.FETCH_USER_SUCCESS, userResponseDTO);
     }
 
-    public static SuccessResponse toUserSuccessResponse(SuccessType successType, Object data) {
-        return SuccessResponse.builder()
+    public static <T> SuccessResponse<T> toUserSuccessResponse(SuccessType successType, T data) {
+        return SuccessResponse.<T>builder()
                 .code(successType.getSuccessCode())
                 .message(successType.getSuccessMessage())
                 .status(successType.getStatus())
