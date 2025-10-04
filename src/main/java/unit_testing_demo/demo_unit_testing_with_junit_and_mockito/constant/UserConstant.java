@@ -3,7 +3,7 @@ package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.constant;
 public class UserConstant {
 
     public static final String USER_ADDED_SUCCESSFULLY = "User added successfully created";
-    public static final String USER_FETCHED_SUCCESSFULLY = "User fetched successfully created";
+    public static final String USER_FETCHED_SUCCESSFULLY = "User fetched successfully";
 
     public static final String USER_NOT_FOUND = "User does not exists";
     public static final String USER_ID_IS_BLANK = "User ID is required";

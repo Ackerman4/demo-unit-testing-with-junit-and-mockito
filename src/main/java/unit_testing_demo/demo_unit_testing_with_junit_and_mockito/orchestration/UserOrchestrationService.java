@@ -1,7 +1,7 @@
 package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.orchestration;
 
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.Response;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.create.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.BaseException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.user.UserNotFoundException;
 

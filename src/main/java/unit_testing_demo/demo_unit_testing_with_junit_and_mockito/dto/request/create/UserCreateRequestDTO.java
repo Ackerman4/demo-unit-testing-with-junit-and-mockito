@@ -1,4 +1,4 @@
-package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto;
+package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.create;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Null;
