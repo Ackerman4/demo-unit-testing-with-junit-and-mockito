@@ -2,7 +2,7 @@ package unit_testing_demo.demo_unit_testing_with_junit_and_mockito.controller.us
 
 import org.junit.jupiter.api.Test;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.SuccessResponse;
-import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDTO.UserCreateRequestDTO;
+import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.request.createRequestDto.UserCreateRequestDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.response.UserResponseDTO;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.exception.BaseException;
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.testDataFactory.response.success.UserSuccessResponseFactory;
@@ -17,9 +17,9 @@ class AddUserTest extends AbstractUserApiController {
     void whenSuccess() throws BaseException {
         UserCreateRequestDTO userCreateRequestDTO = UserTestDataFactory.createTestUserCreateRequestDTOWithoutId();
         UserResponseDTO expectedUserResponseDTO = UserTestDataFactory.createTestUserResponseDTO();
-        SuccessResponse expectedSuccessResponse = UserSuccessResponseFactory.createAddUserSuccessResponse();
+        SuccessResponse<UserResponseDTO> expectedSuccessResponse = UserSuccessResponseFactory.createAddUserSuccessResponse();
         when(userOrchestrationServiceMock.addUser(userCreateRequestDTO)).thenReturn(expectedSuccessResponse);
-        SuccessResponse actualSuccessResponse = (SuccessResponse) userApiController.addUser(userCreateRequestDTO).getBody();
+        SuccessResponse<UserResponseDTO> actualSuccessResponse = (SuccessResponse<UserResponseDTO>)userApiController.addUser(userCreateRequestDTO).getBody();
         assertNotNull(actualSuccessResponse);
         assertEquals(expectedSuccessResponse.getCode(), actualSuccessResponse.getCode());
         assertEquals(expectedSuccessResponse.getMessage(), actualSuccessResponse.getMessage());

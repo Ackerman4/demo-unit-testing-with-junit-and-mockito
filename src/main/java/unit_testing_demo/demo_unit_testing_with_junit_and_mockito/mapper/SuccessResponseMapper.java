@@ -4,8 +4,8 @@ import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.dto.SuccessRes
 import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.SuccessType;
 
 public class SuccessResponseMapper {
-    public static SuccessResponse toSuccessResponse(SuccessType successType, Object data) {
-        return SuccessResponse.builder()
+    public static <T> SuccessResponse<T> toSuccessResponse(SuccessType successType, T data) {
+        return SuccessResponse.<T>builder()
                 .code(successType.getSuccessCode())
                 .message(successType.getSuccessMessage())
                 .status(successType.getStatus())
@@ -13,8 +13,8 @@ public class SuccessResponseMapper {
                 .build();
     }
 
-    public static SuccessResponse toSuccessResponse(String successCode, String successMessage, Boolean status, Object data) {
-        return SuccessResponse.builder()
+    public static <T> SuccessResponse<T> toSuccessResponse(String successCode, String successMessage, Boolean status, T data) {
+        return SuccessResponse.<T>builder()
                 .code(successCode)
                 .message(successMessage)
                 .status(status)

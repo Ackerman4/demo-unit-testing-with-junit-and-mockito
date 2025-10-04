@@ -8,7 +8,8 @@ public enum UserErrorType implements ErrorType {
 
     USER_NOT_FOUND_ERROR("UE-000", USER_NOT_FOUND, false),
     USER_EMAIL_ADDRESS_ALREADY_EXISTS_ERROR("UE-001", USER_EMAIL_ADDRESS_ALREADY_EXISTS, false),
-    USER_ALREADY_EXISTS_ERROR("UE_002", USER_ALREADY_EXISTS, false);
+    USER_PHONE_NUMBER_ALREADY_EXISTS_ERROR("UE-002", USER_PHONE_NUMBER_ALREADY_EXISTS, false),
+    USER_ALREADY_EXISTS_ERROR("UE_003", USER_ALREADY_EXISTS, false);
 
     private final String userErrorCode;
     private final String userErrorMessage;
