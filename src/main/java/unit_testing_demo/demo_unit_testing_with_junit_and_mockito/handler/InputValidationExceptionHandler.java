@@ -17,9 +17,9 @@ public class InputValidationExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ErrorResponse> handleIllegalArgumentException(IllegalArgumentException exception) {
         ErrorResponse errorResponse = ErrorResponseMapper.toErrorResponse(
-                BusinessErrorType.BE_001.getErrorCode(),
+                BusinessErrorType.BUSINESS_ERROR_INVALID_INPUT.getErrorCode(),
                 exception.getMessage(),
-                BusinessErrorType.BE_001.getStatus());
+                BusinessErrorType.BUSINESS_ERROR_INVALID_INPUT.getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
@@ -31,9 +31,9 @@ public class InputValidationExceptionHandler {
                 .map(field -> field.getField() + ": " + field.getDefaultMessage())
                 .collect(Collectors.joining(", "));
         ErrorResponse errorResponse = ErrorResponseMapper.toErrorResponse(
-                BusinessErrorType.BE_000.getErrorCode(),
+                BusinessErrorType.BUSINESS_ERROR_MISSING_PARAMETER.getErrorCode(),
                 errorsMessage,
-                BusinessErrorType.BE_000.getStatus());
+                BusinessErrorType.BUSINESS_ERROR_MISSING_PARAMETER.getStatus());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

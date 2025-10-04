@@ -7,12 +7,12 @@ import static unit_testing_demo.demo_unit_testing_with_junit_and_mockito.constan
 
 public enum UserSuccessType implements SuccessType {
 
-    US_000("US-000", USER_ADDED_SUCCESSFULLY, true),
-    US_001("US-001", USER_FETCHED_SUCCESSFULLY, true);
+    ADD_USER_SUCCESS("US-000", USER_ADDED_SUCCESSFULLY, true),
+    FETCH_USER_SUCCESS("US-001", USER_FETCHED_SUCCESSFULLY, true);
 
-    private String userSuccessCode;
-    private String userSuccessMessage;
-    private Boolean userSuccessStatus;
+    private final String userSuccessCode;
+    private final String userSuccessMessage;
+    private final Boolean userSuccessStatus;
 
     UserSuccessType(String userSuccessCode, String userSuccessMessage, Boolean userSuccessStatus) {
         this.userSuccessCode = userSuccessCode;

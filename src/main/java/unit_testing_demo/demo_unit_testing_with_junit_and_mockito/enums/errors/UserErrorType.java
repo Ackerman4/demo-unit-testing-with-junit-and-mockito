@@ -6,13 +6,13 @@ import static unit_testing_demo.demo_unit_testing_with_junit_and_mockito.constan
 
 public enum UserErrorType implements ErrorType {
 
-    UE_000("UE-000", USER_NOT_FOUND, false),
-    UE_001("UE-001", USER_EMAIL_ADDRESS_ALREADY_EXISTS, false),
-    UE_002("UE_002", USER_ALREADY_EXISTS, false);
+    USER_NOT_FOUND_ERROR("UE-000", USER_NOT_FOUND, false),
+    USER_EMAIL_ADDRESS_ALREADY_EXISTS_ERROR("UE-001", USER_EMAIL_ADDRESS_ALREADY_EXISTS, false),
+    USER_ALREADY_EXISTS_ERROR("UE_002", USER_ALREADY_EXISTS, false);
 
-    private String userErrorCode;
-    private String userErrorMessage;
-    private Boolean userErrorStatus;
+    private final String userErrorCode;
+    private final String userErrorMessage;
+    private final Boolean userErrorStatus;
 
     UserErrorType(String userErrorCode, String userErrorMessage, Boolean userErrorStatus) {
         this.userErrorCode = userErrorCode;

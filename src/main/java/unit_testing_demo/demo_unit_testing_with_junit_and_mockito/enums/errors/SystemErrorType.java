@@ -5,7 +5,7 @@ import unit_testing_demo.demo_unit_testing_with_junit_and_mockito.enums.ErrorTyp
 
 public enum SystemErrorType implements ErrorType {
 
-    SE_000("SE-000", SystemConstant.INTERNAL_SERVER_ERROR, false);
+    SYSTEM_ERROR_INTERNAL_SERVER_ERROR("SE-000", SystemConstant.INTERNAL_SERVER_ERROR, false);
 
     private final String systemErrorCode;
     private final String systemErrorMessage;
